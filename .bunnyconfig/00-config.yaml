@@ -31,14 +31,14 @@ pre_app_deploy:
    name: Configure Wordpress
    command: |
      #!/usr/bin/env bash
-     . /etc/profile.d/azure_secrets.sh
+     . /opt/bunnyshell/package_secrets.sh
     
      config_file="wp-config.php"
      cp wp-config-sample.php ${config_file}
 
-     sed -i -- "s/database_name_here/${MYSQL__MYSQL_DATABASE}/g" ${config_file}
-     sed -i -- "s/username_here/${MYSQL__MYSQL_USER}/g" ${config_file}
-     sed -i -- "s/password_here/${MYSQL__MYSQL_PASSWORD}/g" ${config_file}
+     sed -i -- "s/database_name_here/${MYSQL__DATABASE_NAME}/g" ${config_file}
+     sed -i -- "s/username_here/${MYSQL__DATABASE_USER}/g" ${config_file}
+     sed -i -- "s/password_here/${MYSQL__USER_PASSWORD}/g" ${config_file}
 
 post_app_deploy:
  execs:
