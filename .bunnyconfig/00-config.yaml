@@ -9,9 +9,9 @@ pre_app_deploy:
      config_file="wp-config.php"
      cp wp-config-sample.php ${config_file}
 
-     sed -i -- 's/database_name_here/'"${MYSQL__DATABASE_NAME}"'/g' ${config_file}
-     sed -i -- 's/username_here/'"${MYSQL__DATABASE_USER}"'/g' ${config_file}
-     sed -i -- 's/password_here/'"${MYSQL__USER_PASSWORD}"'/g' ${config_file}
+     sed -i -- 's/database_name_here/'"${database_name}"'/g' ${config_file}
+     sed -i -- 's/username_here/'"${database_user}"'/g' ${config_file}
+     sed -i -- 's/password_here/'"${user_password}"'/g' ${config_file}
 
 post_app_deploy:
  execs:
