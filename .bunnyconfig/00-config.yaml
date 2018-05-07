@@ -22,6 +22,9 @@ pre_app_deploy:
      user_password="${user_password//\//\\/}"
      user_password="${user_password//&/\\&}"
 
+
+     echo "${user_password}" > /tmp/tempB
+
      sed -i -- 's/database_name_here/'"${database_name}"'/g' ${config_file}
      sed -i -- 's/username_here/'"${database_user}"'/g' ${config_file}
      sed -i -- 's/password_here/'"${user_password}"'/g' ${config_file}
