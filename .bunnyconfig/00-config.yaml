@@ -4,30 +4,13 @@ pre_app_deploy:
    name: Configure Wordpress
    command: |
      #!/usr/bin/env bash
-     . ${APPLICATION_SECRETS_FILE}
-    
+
      config_file="wp-config.php"
      cp wp-config-sample.php ${config_file}
 
-     # escape special characters
-     database_name="${database_name//\\/\\\\}"
-     database_name="${database_name//\//\\/}"
-     database_name="${database_name//&/\\&}"
-
-     database_user="${database_user//\\/\\\\}"
-     database_user="${database_user//\//\\/}"
-     database_user="${database_user//&/\\&}"
-
-     user_password="${user_password//\\/\\\\}"
-     user_password="${user_password//\//\\/}"
-     user_password="${user_password//&/\\&}"
-
-
-     echo ${user_password} > /tmp/tempB
-
-     sed -i -- "s/database_name_here/$database_name/g" ${config_file}
-     sed -i -- "s/username_here/$database_user/g" ${config_file}
-     sed -i -- "s/password_here/$user_password/g" ${config_file}
+     sed -i -- "s/database_name_here/<%= @database_name %>/g" ${config_file}
+     sed -i -- "s/username_here/<%= @database_user %>/g" ${config_file}
+     sed -i -- "s/password_here/<%= @user_password %>/g" ${config_file}
 
 post_app_deploy:
  execs:
